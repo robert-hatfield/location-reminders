@@ -26,21 +26,39 @@
                                 <rect key="frame" x="56.5" y="100" width="262.5" height="467"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ab-Ak-kfO">
-                                <rect key="frame" x="152" y="575" width="70" height="30"/>
+                                <rect key="frame" x="27" y="575" width="70" height="30"/>
                                 <state key="normal" title="Location 1"/>
                                 <connections>
                                     <action selector="location1Pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cWj-Qs-Hso"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rQc-Rh-Gji">
+                                <rect key="frame" x="151" y="575" width="72" height="30"/>
+                                <state key="normal" title="Location 2"/>
+                                <connections>
+                                    <action selector="location2Pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vU9-lC-gPk"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="enw-yi-cmg">
+                                <rect key="frame" x="275.5" y="575" width="72" height="30"/>
+                                <state key="normal" title="Location 3"/>
+                                <connections>
+                                    <action selector="location3Pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="emw-jp-BaH"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="eyd-CJ-5EF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="7qU-po-4T2"/>
+                            <constraint firstItem="rQc-Rh-Gji" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Ebt-1Y-PrA"/>
+                            <constraint firstItem="enw-yi-cmg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" multiplier="1.66" id="JQX-zE-3Wb"/>
                             <constraint firstItem="eyd-CJ-5EF" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="RdU-0U-ljt"/>
                             <constraint firstItem="eyd-CJ-5EF" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.7" id="Y0m-nb-1f6"/>
                             <constraint firstItem="eyd-CJ-5EF" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.7" id="aSd-eE-iGX"/>
-                            <constraint firstItem="1ab-Ak-kfO" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dnz-PQ-8Cl"/>
+                            <constraint firstItem="rQc-Rh-Gji" firstAttribute="top" secondItem="eyd-CJ-5EF" secondAttribute="bottom" constant="8" id="dhi-ef-d32"/>
+                            <constraint firstItem="1ab-Ak-kfO" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" multiplier="0.33" id="dnz-PQ-8Cl"/>
                             <constraint firstItem="1ab-Ak-kfO" firstAttribute="top" secondItem="eyd-CJ-5EF" secondAttribute="bottom" constant="8" id="owt-ef-SPC"/>
+                            <constraint firstItem="enw-yi-cmg" firstAttribute="top" secondItem="eyd-CJ-5EF" secondAttribute="bottom" constant="8" id="rL1-LY-cqR"/>
                         </constraints>
                     </view>
                     <connections>

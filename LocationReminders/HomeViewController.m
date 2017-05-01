@@ -53,7 +53,23 @@
 }
 
 - (IBAction)location1Pressed:(id)sender {
-    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(47.6566674, -122.351096);
+    // Point Defiance
+    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(47.301781, -122.515622);
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinate, 500.0, 500.0);
+    [self.mapView setRegion:region animated:YES];
+}
+
+- (IBAction)location2Pressed:(id)sender {
+    // Code Fellows campus
+    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(47.6182206, -122.3540207);
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinate, 500.0, 500.0);
+    [self.mapView setRegion:region animated:YES];
+}
+
+- (IBAction)location3Pressed:(id)sender {
+    // Fred Meyer on S 19th St, Tacoma
+    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake
+    (47.243322, -122.4978105);
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinate, 500.0, 500.0);
     [self.mapView setRegion:region animated:YES];
 }

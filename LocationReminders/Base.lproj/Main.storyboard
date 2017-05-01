@@ -26,22 +26,22 @@
                                 <rect key="frame" x="56.5" y="100" width="262.5" height="467"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ab-Ak-kfO">
-                                <rect key="frame" x="27" y="575" width="70" height="30"/>
-                                <state key="normal" title="Location 1"/>
+                                <rect key="frame" x="20" y="575" width="84" height="30"/>
+                                <state key="normal" title="Pt. Defiance"/>
                                 <connections>
                                     <action selector="location1Pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cWj-Qs-Hso"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rQc-Rh-Gji">
-                                <rect key="frame" x="151" y="575" width="72" height="30"/>
-                                <state key="normal" title="Location 2"/>
+                                <rect key="frame" x="141" y="575" width="92" height="30"/>
+                                <state key="normal" title="Code Fellows"/>
                                 <connections>
                                     <action selector="location2Pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vU9-lC-gPk"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="enw-yi-cmg">
-                                <rect key="frame" x="275.5" y="575" width="72" height="30"/>
-                                <state key="normal" title="Location 3"/>
+                                <rect key="frame" x="272.5" y="575" width="78" height="30"/>
+                                <state key="normal" title="Fred Meyer"/>
                                 <connections>
                                     <action selector="location3Pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="emw-jp-BaH"/>
                                 </connections>

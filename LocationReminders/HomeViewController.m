@@ -1,23 +1,23 @@
 //
-//  ViewController.m
+//  HomeViewController.m
 //  LocationReminders
 //
 //  Created by Robert Hatfield on 5/1/17.
 //  Copyright © 2017 Robert Hatfield. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "HomeViewController.h"
 @import Parse;
 @import MapKit;
 
-@interface ViewController ()
+@interface HomeViewController ()
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 
 @end
 
-@implementation ViewController
+@implementation HomeViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

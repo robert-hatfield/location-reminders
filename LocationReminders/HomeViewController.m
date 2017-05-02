@@ -8,13 +8,13 @@
 
 #import "HomeViewController.h"
 #import "AddReminderViewController.h"
+#import "LocationController.h"
 @import Parse;
 @import MapKit;
 
-@interface HomeViewController () <CLLocationManagerDelegate, MKMapViewDelegate>
+@interface HomeViewController () <LocationControllerDelegate, MKMapViewDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
-@property (strong, nonatomic) CLLocationManager *locationManager;
 
 @end
 
@@ -22,26 +22,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     // Do any additional setup after loading the view, typically from a nib.
-    [self requestPermissions];
+    [LocationController shared].delegate = self;
+    [[LocationController shared] requestPermissions];
     self.mapView.showsUserLocation = YES;
     self.mapView.delegate = self;
-}
-
-- (void)requestPermissions {
-    self.locationManager = [[CLLocationManager alloc] init];
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    self.locationManager.distanceFilter = 100; // meters
-    self.locationManager.delegate = self;
-    [self.locationManager requestAlwaysAuthorization];
-    [self.locationManager startUpdatingLocation];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     [super prepareForSegue:segue sender:sender];
     
-    if ([segue.identifier isEqualToString:@"addReminderViewController"] && [sender isKindOfClass:[MKAnnotationView class]]) {
+    if ([segue.identifier isEqualToString:@"addReminderViewController"] &&
+        [sender isKindOfClass:[MKAnnotationView class]]) {
+        
         MKAnnotationView *annotationView = (MKAnnotationView *)sender;
         AddReminderViewController *newReminderViewController = (AddReminderViewController *)segue.destinationViewController;
         newReminderViewController.coordinate = annotationView.annotation.coordinate;
@@ -84,44 +78,31 @@
     }
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-
 //MARK: Delegate methods
-- (void)locationManager:(CLLocationManager *)manager
-     didUpdateLocations:(NSArray<CLLocation *> *)locations {
-    
-    CLLocation *location = locations.lastObject;
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location.coordinate, 500.0, 500.0);
+- (void)locationControllerUpdatedLocation:(CLLocation *)location {
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location.coordinate,
+                                                                   500.0,
+                                                                   500.0);
     [self.mapView setRegion:region animated:YES];
 }
 
-- (void)locationManager:(CLLocationManager *)manager
-       didFailWithError:(NSError *)error {
-    NSLog(@"An error occurred getting location: %@",
-          error.localizedDescription);
-}
-
-- (MKAnnotationView *)mapView:(MKMapView *)mapView
-            viewForAnnotation:(id<MKAnnotation>)annotation {
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
     
+    // Exclude annotation for user location from reassignment.
     if ([annotation isKindOfClass:[MKUserLocation class]]) {
-        return nil; // Exclude annotation for user location from reassignment.
+        return nil;
     }
     
-    MKPinAnnotationView *annotationView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"annotationView"];
     // Cast a reusable annotation view as the pin subclass.
+    MKPinAnnotationView *annotationView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"annotationView"];
     
-    annotationView.annotation = annotation;
     // Assign the annotation to the annotation view when it is dequeued.
+    annotationView.annotation = annotation;
     
     if (!annotationView) {
-        annotationView = [[MKPinAnnotationView alloc]
-                          initWithAnnotation:annotation reuseIdentifier:@"annotationView"];
         // Create a new annotation view if none are available to be dequeued.
+        annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation
+                                                         reuseIdentifier:@"annotationView"];
     }
     
     annotationView.canShowCallout = YES;
@@ -137,9 +118,7 @@
  annotationView:(MKAnnotationView *)view
 calloutAccessoryControlTapped:(UIControl *)control {
     
-    NSLog(@"Accessory tapped.");
-    [self performSegueWithIdentifier:@"addReminderViewController"
-                              sender:view];
+    [self performSegueWithIdentifier:@"addReminderViewController" sender:view];
 }
 
 @end

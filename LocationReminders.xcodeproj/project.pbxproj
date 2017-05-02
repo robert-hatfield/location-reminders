@@ -19,6 +19,7 @@
 		62BE77851EB7B30600B5A8CC /* Parse.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 62BE77811EB7B2D300B5A8CC /* Parse.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		62BE77861EB7B30B00B5A8CC /* Bolts.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 62BE77801EB7B2D300B5A8CC /* Bolts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		62BE77881EB7C0C500B5A8CC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62BE77871EB7C0C500B5A8CC /* MapKit.framework */; };
+		62FDF7D31EB92B4000AAD1D1 /* LocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62FDF7D21EB92B4000AAD1D1 /* LocationController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -51,6 +52,8 @@
 		62BE77801EB7B2D300B5A8CC /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = Carthage/Build/iOS/Bolts.framework; sourceTree = "<group>"; };
 		62BE77811EB7B2D300B5A8CC /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = Carthage/Build/iOS/Parse.framework; sourceTree = "<group>"; };
 		62BE77871EB7C0C500B5A8CC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		62FDF7D11EB92B4000AAD1D1 /* LocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationController.h; sourceTree = "<group>"; };
+		62FDF7D21EB92B4000AAD1D1 /* LocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +126,8 @@
 				623158C41EB8FF1D002A5CA0 /* AddReminderViewController.m */,
 				62BE776E1EB7ABFE00B5A8CC /* HomeViewController.h */,
 				62BE776F1EB7ABFE00B5A8CC /* HomeViewController.m */,
+				62FDF7D11EB92B4000AAD1D1 /* LocationController.h */,
+				62FDF7D21EB92B4000AAD1D1 /* LocationController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -214,6 +219,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62FDF7D31EB92B4000AAD1D1 /* LocationController.m in Sources */,
 				623158C51EB8FF1D002A5CA0 /* AddReminderViewController.m in Sources */,
 				62BE77701EB7ABFE00B5A8CC /* HomeViewController.m in Sources */,
 				62BE776D1EB7ABFE00B5A8CC /* AppDelegate.m in Sources */,

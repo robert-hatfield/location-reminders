@@ -10,10 +10,27 @@
 
 @implementation LocationBookmark
 
--(instancetype)initWithName:(NSString *)name latitude:(double)latitude andLongitude:(double)longitude {
-    self.name = name;
-    self.coordinate = CLLocationCoordinate2DMake(latitude, longitude);
+-(id)initWithName:(NSString *)name
+                   latitude:(double)latitude
+               andLongitude:(double)longitude {
+
+
+    self = [super init];
     
+    if (self) {
+        _name = name;
+        _coordinate = CLLocationCoordinate2DMake(latitude, longitude);
+    }
+    return self;
+}
+
+-(id)initWithName:(NSString *)name andLocation:(CLLocation*)location {
+    self = [super init];
+    
+    if (self) {
+        _name = name;
+        _coordinate = location.coordinate;
+    }
     return self;
 }
 

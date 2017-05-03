@@ -39,9 +39,14 @@
         PFLogInViewController *logInViewController = [[PFLogInViewController alloc] init];
         logInViewController.delegate = self;
         logInViewController.signUpController.delegate = self;
-        logInViewController.fields = PFLogInFieldsLogInButton | PFLogInFieldsSignUpButton | PFLogInFieldsUsernameAndPassword | PFLogInFieldsPasswordForgotten;
+        logInViewController.fields = PFLogInFieldsLogInButton | PFLogInFieldsSignUpButton | PFLogInFieldsUsernameAndPassword | PFLogInFieldsPasswordForgotten | PFLogInFieldsFacebook | PFLogInFieldsDismissButton;
 //        logInViewController.logInView.logo = [[UIView alloc] init]; // Override logo on login screen
-        logInViewController.logInView.backgroundColor = [UIColor lightGrayColor];
+        logInViewController.logInView.backgroundColor = [UIColor colorWithRed:0.53
+                                                                        green:0.60
+                                                                         blue:0.70
+                                                                        alpha:1.0];
+        
+;
         
         
         [self presentViewController:logInViewController animated:YES completion:nil];

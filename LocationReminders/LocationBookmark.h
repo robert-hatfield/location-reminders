@@ -14,4 +14,10 @@
 @property (nonatomic) CLLocationCoordinate2D coordinate;
 @property (strong, nonatomic) NSString* name;
 
+-(id)initWithName:(NSString *)name
+                   latitude:(double)latitude
+               andLongitude:(double)longitude;
+
+-(id)initWithName:(NSString *)name andLocation:(CLLocation*)location;
+
 @end

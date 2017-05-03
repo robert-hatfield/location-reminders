@@ -40,7 +40,7 @@
         NSLog(@"Reminder saved successful: %i - Error: %@", succeeded, error.localizedDescription);
         
         if (self.completion) {
-            CGFloat radius = 100; // change this to use UITextField or UISlider
+            CGFloat radius = 100; // TODO: change this to use UITextField or UISlider
             MKCircle *circle = [MKCircle circleWithCenterCoordinate:self.coordinate radius:radius];
             self.completion(circle);
             [self.navigationController popViewControllerAnimated:YES];

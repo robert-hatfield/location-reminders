@@ -28,6 +28,19 @@
     [[LocationController shared] requestPermissions];
     self.mapView.showsUserLocation = YES;
     self.mapView.delegate = self;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reminderSavedToParse:) name:@"ReminderSavedToParse" object:nil];
+}
+
+- (void)reminderSavedToParse:(id)sender {
+    NSLog(@"Do something once reminder is saved.");
+}
+
+-(void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:@"ReminderSavedToParse"
+                                                  object:nil];
+    // No need to call dealloc on parent class; ARC does this for us.
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -52,6 +65,7 @@
         };
     }
 }
+
 
 //MARK: User actions
 - (IBAction)location1Pressed:(id)sender {

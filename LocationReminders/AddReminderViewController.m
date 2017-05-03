@@ -39,6 +39,9 @@
               self.coordinate.longitude);
         NSLog(@"Reminder saved successful: %i - Error: %@", succeeded, error.localizedDescription);
         
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"ReminderSavedToParse"
+                                                            object:nil];
+        
         if (self.completion) {
             CGFloat radius = 100; // TODO: change this to use UITextField or UISlider
             MKCircle *circle = [MKCircle circleWithCenterCoordinate:self.coordinate radius:radius];

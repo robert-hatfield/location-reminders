@@ -10,6 +10,9 @@
 
 @interface AddReminderViewController ()
 
+@property (weak, nonatomic) IBOutlet UITextField *reminderText;
+@property (weak, nonatomic) IBOutlet UITextField *reminderRadius;
+
 @end
 
 @implementation AddReminderViewController

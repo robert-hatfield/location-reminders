@@ -129,7 +129,7 @@
                                 <rect key="frame" x="130" y="111" width="46.5" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -149,6 +149,10 @@
                             <constraint firstItem="yWU-9z-dfI" firstAttribute="top" secondItem="fxR-CQ-uf3" secondAttribute="bottom" constant="18" id="y7O-ls-7yB"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="reminderRadius" destination="fxR-CQ-uf3" id="4R1-Im-X4M"/>
+                        <outlet property="reminderText" destination="bgt-27-oj8" id="al2-Oe-92B"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="la4-sL-xEQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

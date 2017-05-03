@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		623158C51EB8FF1D002A5CA0 /* AddReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 623158C41EB8FF1D002A5CA0 /* AddReminderViewController.m */; };
+		6238937A1EBA4658003F7C3B /* Reminder.m in Sources */ = {isa = PBXBuildFile; fileRef = 623893791EBA4658003F7C3B /* Reminder.m */; };
 		626671901EB9676D00DA419F /* LocationPresetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6266718F1EB9676D00DA419F /* LocationPresetsViewController.m */; };
 		626671931EB9886500DA419F /* LocationBookmark.m in Sources */ = {isa = PBXBuildFile; fileRef = 626671921EB9886500DA419F /* LocationBookmark.m */; };
 		62BE776A1EB7ABFE00B5A8CC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 62BE77691EB7ABFE00B5A8CC /* main.m */; };
@@ -41,6 +42,8 @@
 /* Begin PBXFileReference section */
 		623158C31EB8FF1D002A5CA0 /* AddReminderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddReminderViewController.h; sourceTree = "<group>"; };
 		623158C41EB8FF1D002A5CA0 /* AddReminderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddReminderViewController.m; sourceTree = "<group>"; };
+		623893781EBA4658003F7C3B /* Reminder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reminder.h; sourceTree = "<group>"; };
+		623893791EBA4658003F7C3B /* Reminder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reminder.m; sourceTree = "<group>"; };
 		6266718E1EB9676D00DA419F /* LocationPresetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationPresetsViewController.h; sourceTree = "<group>"; };
 		6266718F1EB9676D00DA419F /* LocationPresetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationPresetsViewController.m; sourceTree = "<group>"; };
 		626671911EB9886500DA419F /* LocationBookmark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationBookmark.h; sourceTree = "<group>"; };
@@ -80,6 +83,8 @@
 			isa = PBXGroup;
 			children = (
 				626671911EB9886500DA419F /* LocationBookmark.h */,
+				623893781EBA4658003F7C3B /* Reminder.h */,
+				623893791EBA4658003F7C3B /* Reminder.m */,
 				626671921EB9886500DA419F /* LocationBookmark.m */,
 			);
 			name = Models;
@@ -240,6 +245,7 @@
 				62FDF7D31EB92B4000AAD1D1 /* LocationController.m in Sources */,
 				623158C51EB8FF1D002A5CA0 /* AddReminderViewController.m in Sources */,
 				62BE77701EB7ABFE00B5A8CC /* HomeViewController.m in Sources */,
+				6238937A1EBA4658003F7C3B /* Reminder.m in Sources */,
 				62BE776D1EB7ABFE00B5A8CC /* AppDelegate.m in Sources */,
 				626671901EB9676D00DA419F /* LocationPresetsViewController.m in Sources */,
 				626671931EB9886500DA419F /* LocationBookmark.m in Sources */,

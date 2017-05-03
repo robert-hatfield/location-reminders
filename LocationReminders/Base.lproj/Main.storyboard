@@ -176,6 +176,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yV3-S3-8oO">
                                 <rect key="frame" x="263" y="159" width="37" height="30"/>
                                 <state key="normal" title="SAVE"/>
+                                <connections>
+                                    <action selector="saveReminder:" destination="agU-Ub-cY6" eventType="touchUpInside" id="Ev5-xR-UNg"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="250" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fxR-CQ-uf3">
                                 <rect key="frame" x="130" y="111" width="46.5" height="30"/>

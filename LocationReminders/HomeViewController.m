@@ -40,6 +40,16 @@
         AddReminderViewController *newReminderViewController = (AddReminderViewController *)segue.destinationViewController;
         newReminderViewController.coordinate = annotationView.annotation.coordinate;
         newReminderViewController.annotationTitle = annotationView.annotation.title;
+        newReminderViewController.title = annotationView.annotation.title;
+        
+        // Create a weak reference to self - this VC - to avoid a retain cycle.
+        __weak typeof(self) bruce = self;
+        newReminderViewController.completion = ^(MKCircle *circle) {
+            // Make the reference to the Home VC strong for the scope of this block.
+            __strong typeof(bruce) hulk = bruce;
+            [hulk.mapView removeAnnotation:annotationView.annotation];
+            [hulk.mapView addOverlay:circle];
+        };
     }
 }
 
@@ -109,7 +119,9 @@
     annotationView.animatesDrop = YES;
     
     // Assign a random color to pin.
-    NSArray *colors = @[UIColor.blueColor, UIColor.brownColor, UIColor.cyanColor, UIColor.greenColor, UIColor.magentaColor, UIColor.orangeColor, UIColor.purpleColor, UIColor.redColor];
+    NSArray *colors = @[UIColor.blueColor, UIColor.brownColor, UIColor.cyanColor,
+                        UIColor.greenColor, UIColor.magentaColor, UIColor.orangeColor,
+                        UIColor.purpleColor, UIColor.redColor];
     UIColor *randomColor = colors[arc4random_uniform(8)];
     annotationView.pinTintColor = randomColor;
     
@@ -124,6 +136,16 @@
 calloutAccessoryControlTapped:(UIControl *)control {
     
     [self performSegueWithIdentifier:@"addReminderViewController" sender:view];
+}
+
+- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
+    
+    MKCircleRenderer *renderer = [[MKCircleRenderer alloc] initWithCircle:overlay];
+    renderer.strokeColor = [UIColor colorWithRed:0 green:0 blue:1.0 alpha:0.4];
+    renderer.lineWidth = 2.0;
+    renderer.fillColor = [UIColor colorWithRed:0 green:0 blue:1.0 alpha:0.25];
+    
+    return renderer;
 }
 
 @end

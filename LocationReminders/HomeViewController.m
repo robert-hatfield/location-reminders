@@ -9,10 +9,13 @@
 #import "HomeViewController.h"
 #import "AddReminderViewController.h"
 #import "LocationController.h"
-@import Parse;
-@import MapKit;
 
-@interface HomeViewController () <LocationControllerDelegate, MKMapViewDelegate>
+@import MapKit;
+@import Parse;
+@import ParseUI;
+
+@interface HomeViewController () <MKMapViewDelegate,LocationControllerDelegate,
+    PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
@@ -30,6 +33,19 @@
     self.mapView.delegate = self;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reminderSavedToParse:) name:@"ReminderSavedToParse" object:nil];
+    
+    // If no PFUser is defined, present a log in VC.
+    if (![PFUser currentUser]) {
+        PFLogInViewController *logInViewController = [[PFLogInViewController alloc] init];
+        logInViewController.delegate = self;
+        logInViewController.signUpController.delegate = self;
+        logInViewController.fields = PFLogInFieldsLogInButton | PFLogInFieldsSignUpButton | PFLogInFieldsUsernameAndPassword | PFLogInFieldsPasswordForgotten;
+//        logInViewController.logInView.logo = [[UIView alloc] init]; // Override logo on login screen
+        logInViewController.logInView.backgroundColor = [UIColor lightGrayColor];
+        
+        
+        [self presentViewController:logInViewController animated:YES completion:nil];
+    }
 }
 
 - (void)reminderSavedToParse:(id)sender {
@@ -160,6 +176,16 @@ calloutAccessoryControlTapped:(UIControl *)control {
     renderer.fillColor = [UIColor colorWithRed:0 green:0 blue:1.0 alpha:0.25];
     
     return renderer;
+}
+
+//MARK: PFUser delegate methods
+
+-(void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

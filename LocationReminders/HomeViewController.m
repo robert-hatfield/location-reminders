@@ -108,6 +108,11 @@
     annotationView.canShowCallout = YES;
     annotationView.animatesDrop = YES;
     
+    // Assign a random color to pin.
+    NSArray *colors = @[UIColor.blueColor, UIColor.brownColor, UIColor.cyanColor, UIColor.greenColor, UIColor.magentaColor, UIColor.orangeColor, UIColor.purpleColor, UIColor.redColor];
+    UIColor *randomColor = colors[arc4random_uniform(8)];
+    annotationView.pinTintColor = randomColor;
+    
     UIButton *rightCalloutAccessory = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
     annotationView.rightCalloutAccessoryView = rightCalloutAccessory;
     

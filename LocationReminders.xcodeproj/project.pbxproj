@@ -9,23 +9,45 @@
 /* Begin PBXBuildFile section */
 		62BE776A1EB7ABFE00B5A8CC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 62BE77691EB7ABFE00B5A8CC /* main.m */; };
 		62BE776D1EB7ABFE00B5A8CC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 62BE776C1EB7ABFE00B5A8CC /* AppDelegate.m */; };
-		62BE77701EB7ABFE00B5A8CC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62BE776F1EB7ABFE00B5A8CC /* ViewController.m */; };
+		62BE77701EB7ABFE00B5A8CC /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62BE776F1EB7ABFE00B5A8CC /* HomeViewController.m */; };
 		62BE77731EB7ABFE00B5A8CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62BE77711EB7ABFE00B5A8CC /* Main.storyboard */; };
 		62BE77751EB7ABFE00B5A8CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62BE77741EB7ABFE00B5A8CC /* Assets.xcassets */; };
 		62BE77781EB7ABFE00B5A8CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62BE77761EB7ABFE00B5A8CC /* LaunchScreen.storyboard */; };
+		62BE77821EB7B2D300B5A8CC /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62BE77801EB7B2D300B5A8CC /* Bolts.framework */; };
+		62BE77831EB7B2D300B5A8CC /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62BE77811EB7B2D300B5A8CC /* Parse.framework */; };
+		62BE77851EB7B30600B5A8CC /* Parse.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 62BE77811EB7B2D300B5A8CC /* Parse.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		62BE77861EB7B30B00B5A8CC /* Bolts.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 62BE77801EB7B2D300B5A8CC /* Bolts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		62BE77881EB7C0C500B5A8CC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62BE77871EB7C0C500B5A8CC /* MapKit.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		62BE77841EB7B2F100B5A8CC /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				62BE77861EB7B30B00B5A8CC /* Bolts.framework in CopyFiles */,
+				62BE77851EB7B30600B5A8CC /* Parse.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		62BE77651EB7ABFE00B5A8CC /* LocationReminders.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocationReminders.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62BE77691EB7ABFE00B5A8CC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		62BE776B1EB7ABFE00B5A8CC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		62BE776C1EB7ABFE00B5A8CC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		62BE776E1EB7ABFE00B5A8CC /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		62BE776F1EB7ABFE00B5A8CC /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		62BE776E1EB7ABFE00B5A8CC /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		62BE776F1EB7ABFE00B5A8CC /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		62BE77721EB7ABFE00B5A8CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		62BE77741EB7ABFE00B5A8CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		62BE77771EB7ABFE00B5A8CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		62BE77791EB7ABFE00B5A8CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		62BE77801EB7B2D300B5A8CC /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = Carthage/Build/iOS/Bolts.framework; sourceTree = "<group>"; };
+		62BE77811EB7B2D300B5A8CC /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = Carthage/Build/iOS/Parse.framework; sourceTree = "<group>"; };
+		62BE77871EB7C0C500B5A8CC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +55,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62BE77821EB7B2D300B5A8CC /* Bolts.framework in Frameworks */,
+				62BE77881EB7C0C500B5A8CC /* MapKit.framework in Frameworks */,
+				62BE77831EB7B2D300B5A8CC /* Parse.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +69,7 @@
 			children = (
 				62BE77671EB7ABFE00B5A8CC /* LocationReminders */,
 				62BE77661EB7ABFE00B5A8CC /* Products */,
+				62BE777F1EB7B2D200B5A8CC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,14 +84,8 @@
 		62BE77671EB7ABFE00B5A8CC /* LocationReminders */ = {
 			isa = PBXGroup;
 			children = (
-				62BE776B1EB7ABFE00B5A8CC /* AppDelegate.h */,
-				62BE776C1EB7ABFE00B5A8CC /* AppDelegate.m */,
-				62BE776E1EB7ABFE00B5A8CC /* ViewController.h */,
-				62BE776F1EB7ABFE00B5A8CC /* ViewController.m */,
-				62BE77711EB7ABFE00B5A8CC /* Main.storyboard */,
-				62BE77741EB7ABFE00B5A8CC /* Assets.xcassets */,
-				62BE77761EB7ABFE00B5A8CC /* LaunchScreen.storyboard */,
-				62BE77791EB7ABFE00B5A8CC /* Info.plist */,
+				62BE77891EB7C1E100B5A8CC /* Controllers */,
+				62BE778A1EB7C2E300B5A8CC /* Views */,
 				62BE77681EB7ABFE00B5A8CC /* Supporting Files */,
 			);
 			path = LocationReminders;
@@ -74,9 +94,41 @@
 		62BE77681EB7ABFE00B5A8CC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				62BE776B1EB7ABFE00B5A8CC /* AppDelegate.h */,
+				62BE776C1EB7ABFE00B5A8CC /* AppDelegate.m */,
+				62BE77791EB7ABFE00B5A8CC /* Info.plist */,
 				62BE77691EB7ABFE00B5A8CC /* main.m */,
+				62BE77741EB7ABFE00B5A8CC /* Assets.xcassets */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		62BE777F1EB7B2D200B5A8CC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				62BE77871EB7C0C500B5A8CC /* MapKit.framework */,
+				62BE77801EB7B2D300B5A8CC /* Bolts.framework */,
+				62BE77811EB7B2D300B5A8CC /* Parse.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		62BE77891EB7C1E100B5A8CC /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				62BE776E1EB7ABFE00B5A8CC /* HomeViewController.h */,
+				62BE776F1EB7ABFE00B5A8CC /* HomeViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		62BE778A1EB7C2E300B5A8CC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				62BE77711EB7ABFE00B5A8CC /* Main.storyboard */,
+				62BE77761EB7ABFE00B5A8CC /* LaunchScreen.storyboard */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -89,6 +141,7 @@
 				62BE77611EB7ABFE00B5A8CC /* Sources */,
 				62BE77621EB7ABFE00B5A8CC /* Frameworks */,
 				62BE77631EB7ABFE00B5A8CC /* Resources */,
+				62BE77841EB7B2F100B5A8CC /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -112,6 +165,11 @@
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = 4C7AR59H6U;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -151,7 +209,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				62BE77701EB7ABFE00B5A8CC /* ViewController.m in Sources */,
+				62BE77701EB7ABFE00B5A8CC /* HomeViewController.m in Sources */,
 				62BE776D1EB7ABFE00B5A8CC /* AppDelegate.m in Sources */,
 				62BE776A1EB7ABFE00B5A8CC /* main.m in Sources */,
 			);
@@ -276,6 +334,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 4C7AR59H6U;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = LocationReminders/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.roberthatfield.LocationReminders;
@@ -288,6 +350,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 4C7AR59H6U;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = LocationReminders/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.roberthatfield.LocationReminders;

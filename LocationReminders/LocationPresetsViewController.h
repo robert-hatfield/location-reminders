@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+typedef MKCoordinateRegion(^BookmarkSelectedCompletion)(CLLocationCoordinate2D);
+
 @interface LocationPresetsViewController : UIViewController
+@property (strong, nonatomic) BookmarkSelectedCompletion completion;
 
 @end

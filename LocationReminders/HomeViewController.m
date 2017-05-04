@@ -110,6 +110,14 @@
             [homeVCstrong.mapView addOverlay:circle];
         };
     }
+    
+    if ([segue.identifier isEqualToString:@"showPresets"]) {
+        
+        LocationPresetsViewController *bookmarkViewController = (LocationPresetsViewController *)segue.destinationViewController;
+        __weak typeof (self) homeVCweak = self;
+//MARK: Incomplete
+//        bookmarkViewController.completion =
+    }
 }
 
 

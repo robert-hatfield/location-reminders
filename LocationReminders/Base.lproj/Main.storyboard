@@ -186,6 +186,9 @@
                                     <segment title="m"/>
                                     <segment title="km"/>
                                 </segments>
+                                <connections>
+                                    <action selector="click:" destination="agU-Ub-cY6" eventType="valueChanged" id="Dii-j2-TxP"/>
+                                </connections>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yWU-9z-dfI">
                                 <rect key="frame" x="66.5" y="159" width="55" height="30"/>

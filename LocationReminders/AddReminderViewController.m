@@ -18,10 +18,8 @@
 
 @implementation AddReminderViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-
+- (IBAction)click:(UISegmentedControl *)sender {
+    NSLog(@"Selected: %li", (long)sender.selectedSegmentIndex);
 }
 
 - (IBAction)saveReminder:(UIButton *)sender {
@@ -40,7 +38,7 @@
         
         NSLog(@"Annotation title: %@", self.annotationTitle);
         NSLog(@"Coordinates: %f, %f", self.coordinate.latitude, self.coordinate.longitude);
-        NSLog(@"Reminder saved successful: %i - Error: %@", succeeded, error.localizedDescription);
+        NSLog(@"Reminder saved successfully: %i - Error: %@", succeeded, error.localizedDescription);
         
         [[NSNotificationCenter defaultCenter] postNotificationName:@"ReminderSavedToParse"
                                                             object:nil];
@@ -54,8 +52,6 @@
         }
         
     }];
-    
-
 }
 
 

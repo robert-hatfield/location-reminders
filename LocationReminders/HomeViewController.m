@@ -9,6 +9,7 @@
 #import "HomeViewController.h"
 #import "AddReminderViewController.h"
 #import "LocationController.h"
+#import "Reminder.h"
 
 @import MapKit;
 @import Parse;
@@ -51,6 +52,29 @@
         
         [self presentViewController:logInViewController animated:YES completion:nil];
     }
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Reminder"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects,
+                                              NSError * _Nullable error) {
+        
+        if (!error) {
+            NSLog(@"\nLOCATIONS:\n---------");
+            for (Reminder *reminder in objects) {
+                NSLog(@"Name: %@, Lat: %f Lon: %f | Radius: %@m.",
+                      reminder.name,
+                      reminder.location.latitude,
+                      reminder.location.longitude,
+                      reminder.radius);
+            }
+        } else {
+            NSLog(@"An error occurred fetching reminders: %@", error.localizedDescription);
+        }
+        
+    }];
 }
 
 - (void)reminderSavedToParse:(id)sender {
@@ -185,11 +209,13 @@ calloutAccessoryControlTapped:(UIControl *)control {
 
 //MARK: PFUser delegate methods
 
--(void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user {
+-(void)logInViewController:(PFLogInViewController *)logInController
+              didLogInUser:(PFUser *)user {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
--(void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
+-(void)signUpViewController:(PFSignUpViewController *)signUpController
+              didSignUpUser:(PFUser *)user {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

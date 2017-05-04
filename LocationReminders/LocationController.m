@@ -7,6 +7,7 @@
 //
 
 #import "LocationController.h"
+@import UserNotifications;
 
 @interface LocationController () <CLLocationManagerDelegate>
 
@@ -55,6 +56,29 @@
 
 -(void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region {
     NSLog(@"User ENTERED region: %@", region.identifier);
+    // Normally you could send the region object to the app's NotificationCenter, but this isn't
+    // working due to a bug in iOS. We'll use a time interval trigger as a workaround.
+    
+    UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
+    content.title = @"Reminder!";
+    content.body = [NSString stringWithFormat:@"%@", region.identifier];
+    content.sound = [UNNotificationSound defaultSound];
+    
+    UNTimeIntervalNotificationTrigger *trigger =
+        [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:0.1 repeats:NO];
+    
+    UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"Location Entered"
+                                                                          content:content
+                                                                          trigger:trigger];
+    
+    UNUserNotificationCenter *current = [UNUserNotificationCenter currentNotificationCenter];
+    
+    [current removeAllPendingNotificationRequests];
+    [current addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"Error adding notification request: %@", error.localizedDescription);
+        }
+    }];
 }
 
 -(void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region {

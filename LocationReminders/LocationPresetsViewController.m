@@ -7,12 +7,9 @@
 //
 
 #import "LocationPresetsViewController.h"
-#import "HomeViewController.h"
 #import "LocationBookmark.h"
 
-@import MapKit;
-
-@interface LocationPresetsViewController () <UITableViewDataSource>
+@interface LocationPresetsViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *presetsTableView;
 @property (strong, nonatomic) NSMutableArray *bookmarks;
 
@@ -24,6 +21,7 @@
     [super viewDidLoad];
     
     self.presetsTableView.dataSource = self;
+    self.presetsTableView.delegate = self;
     
     // Create initial bookmarks & array
     
@@ -51,6 +49,16 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.bookmarks.count;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    NSLog(@"Selected row %li", (long)indexPath.row);
+    LocationBookmark *bookmark = (LocationBookmark *)[self.bookmarks objectAtIndex:indexPath.row];
+    NSLog(@"%f, %f", bookmark.coordinate.latitude, bookmark.coordinate.longitude);
+
+    [self dismissViewControllerAnimated:YES completion:nil];
+ 
 }
 
 

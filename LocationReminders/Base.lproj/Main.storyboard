@@ -70,7 +70,7 @@
                     <navigationItem key="navigationItem" id="UQS-7f-f2U">
                         <barButtonItem key="rightBarButtonItem" systemItem="bookmarks" id="JoJ-zn-siu">
                             <connections>
-                                <segue destination="nqY-tm-b79" kind="presentation" modalPresentationStyle="overCurrentContext" modalTransitionStyle="coverVertical" id="boT-tz-bJh"/>
+                                <segue destination="nqY-tm-b79" kind="presentation" identifier="showPresets" modalPresentationStyle="overCurrentContext" modalTransitionStyle="coverVertical" id="boT-tz-bJh"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

@@ -10,6 +10,7 @@
 #import "AddReminderViewController.h"
 #import "LocationController.h"
 #import "Reminder.h"
+#import "LocationPresetsViewController.h"
 
 @import MapKit;
 @import Parse;

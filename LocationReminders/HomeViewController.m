@@ -9,10 +9,15 @@
 #import "HomeViewController.h"
 #import "AddReminderViewController.h"
 #import "LocationController.h"
-@import Parse;
-@import MapKit;
+#import "Reminder.h"
+#import "LocationPresetsViewController.h"
 
-@interface HomeViewController () <LocationControllerDelegate, MKMapViewDelegate>
+@import MapKit;
+@import Parse;
+@import ParseUI;
+
+@interface HomeViewController () <MKMapViewDelegate,LocationControllerDelegate,
+    PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
@@ -28,6 +33,60 @@
     [[LocationController shared] requestPermissions];
     self.mapView.showsUserLocation = YES;
     self.mapView.delegate = self;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reminderSavedToParse:) name:@"ReminderSavedToParse" object:nil];
+    
+    // If no PFUser is defined, present a log in VC.
+    if (![PFUser currentUser]) {
+        PFLogInViewController *logInViewController = [[PFLogInViewController alloc] init];
+        logInViewController.delegate = self;
+        logInViewController.signUpController.delegate = self;
+        logInViewController.fields = PFLogInFieldsLogInButton | PFLogInFieldsSignUpButton | PFLogInFieldsUsernameAndPassword | PFLogInFieldsPasswordForgotten | PFLogInFieldsFacebook | PFLogInFieldsDismissButton;
+//        logInViewController.logInView.logo = [[UIView alloc] init]; // Override logo on login screen
+        logInViewController.logInView.backgroundColor = [UIColor colorWithRed:0.53
+                                                                        green:0.60
+                                                                         blue:0.70
+                                                                        alpha:1.0];
+        
+;
+        
+        
+        [self presentViewController:logInViewController animated:YES completion:nil];
+    }
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Reminder"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects,
+                                              NSError * _Nullable error) {
+        
+        if (!error) {
+            NSLog(@"\nLOCATIONS:\n---------");
+            for (Reminder *reminder in objects) {
+                NSLog(@"Name: %@, Lat: %f Lon: %f | Radius: %@m.",
+                      reminder.name,
+                      reminder.location.latitude,
+                      reminder.location.longitude,
+                      reminder.radius);
+            }
+        } else {
+            NSLog(@"An error occurred fetching reminders: %@", error.localizedDescription);
+        }
+        
+    }];
+}
+
+- (void)reminderSavedToParse:(id)sender {
+    NSLog(@"Do something once reminder is saved.");
+}
+
+-(void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:@"ReminderSavedToParse"
+                                                  object:nil];
+    // No need to call dealloc on parent class; ARC does this for us.
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -40,8 +99,19 @@
         AddReminderViewController *newReminderViewController = (AddReminderViewController *)segue.destinationViewController;
         newReminderViewController.coordinate = annotationView.annotation.coordinate;
         newReminderViewController.annotationTitle = annotationView.annotation.title;
+        newReminderViewController.title = annotationView.annotation.title;
+        
+        // Create a weak reference to self - this VC - to avoid a retain cycle.
+        __weak typeof(self) homeVCweak = self;
+        newReminderViewController.completion = ^(MKCircle *circle) {
+            // Make the reference to the Home VC strong for the scope of this block.
+            __strong typeof(homeVCweak) homeVCstrong = homeVCweak;
+            [homeVCstrong.mapView removeAnnotation:annotationView.annotation];
+            [homeVCstrong.mapView addOverlay:circle];
+        };
     }
 }
+
 
 //MARK: User actions
 - (IBAction)location1Pressed:(id)sender {
@@ -109,7 +179,9 @@
     annotationView.animatesDrop = YES;
     
     // Assign a random color to pin.
-    NSArray *colors = @[UIColor.blueColor, UIColor.brownColor, UIColor.cyanColor, UIColor.greenColor, UIColor.magentaColor, UIColor.orangeColor, UIColor.purpleColor, UIColor.redColor];
+    NSArray *colors = @[UIColor.blueColor, UIColor.brownColor, UIColor.cyanColor,
+                        UIColor.greenColor, UIColor.magentaColor, UIColor.orangeColor,
+                        UIColor.purpleColor, UIColor.redColor];
     UIColor *randomColor = colors[arc4random_uniform(8)];
     annotationView.pinTintColor = randomColor;
     
@@ -124,6 +196,28 @@
 calloutAccessoryControlTapped:(UIControl *)control {
     
     [self performSegueWithIdentifier:@"addReminderViewController" sender:view];
+}
+
+- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
+    
+    MKCircleRenderer *renderer = [[MKCircleRenderer alloc] initWithCircle:overlay];
+    renderer.strokeColor = [UIColor colorWithRed:0 green:0 blue:1.0 alpha:0.4];
+    renderer.lineWidth = 2.0;
+    renderer.fillColor = [UIColor colorWithRed:0 green:0 blue:1.0 alpha:0.25];
+    
+    return renderer;
+}
+
+//MARK: PFUser delegate methods
+
+-(void)logInViewController:(PFLogInViewController *)logInController
+              didLogInUser:(PFUser *)user {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)signUpViewController:(PFSignUpViewController *)signUpController
+              didSignUpUser:(PFUser *)user {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

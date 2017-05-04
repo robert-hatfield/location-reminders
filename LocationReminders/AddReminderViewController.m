@@ -8,6 +8,7 @@
 
 #import "AddReminderViewController.h"
 #import "Reminder.h"
+#import "LocationController.h"
 
 @interface AddReminderViewController ()
 
@@ -42,6 +43,11 @@
         
         [[NSNotificationCenter defaultCenter] postNotificationName:@"ReminderSavedToParse"
                                                             object:nil];
+        
+        if ([CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]]) {
+            CLCircularRegion *region = [[CLCircularRegion alloc] initWithCenter:self.coordinate radius:[radius intValue] identifier:newReminder.name];
+            [LocationController.shared startMonitoringForRegion:region];
+        }
         
         if (self.completion) {
             CGFloat overlayRadius = radius.floatValue;

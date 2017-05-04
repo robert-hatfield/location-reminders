@@ -37,6 +37,11 @@
 
 
 //MARK: Delegate methods
+
+-(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    NSLog(@"Location manager failed with error: %@ \n %@", error.localizedDescription, error.localizedFailureReason); //ignore if in simulator
+}
+
 - (void)locationManager:(CLLocationManager *)manager
      didUpdateLocations:(NSArray<CLLocation *> *)locations {
     
@@ -44,10 +49,24 @@
     [self.delegate locationControllerUpdatedLocation:self.location];
 }
 
-- (void)locationManager:(CLLocationManager *)manager
-       didFailWithError:(NSError *)error {
-    NSLog(@"An error occurred getting location: %@",
-          error.localizedDescription);
+- (void)startMonitoringForRegion:(CLRegion *)region {
+    [self.locationManager startMonitoringForRegion:region];
+}
+
+-(void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region {
+    NSLog(@"User ENTERED region: %@", region.identifier);
+}
+
+-(void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region {
+    NSLog(@"User EXITED region: %@", region.identifier);
+}
+
+-(void)locationManager:(CLLocationManager *)manager didVisit:(CLVisit *)visit {
+    NSLog(@"Location manager registered a visit: %@", visit);
+}
+
+-(void)locationManager:(CLLocationManager *)manager didStartMonitoringForRegion:(CLRegion *)region {
+    NSLog(@"Region successfully started monitoring changes for region: %@", region.identifier);
 }
 
 @end

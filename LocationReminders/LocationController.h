@@ -24,5 +24,6 @@
 + (instancetype)shared;
 
 - (void)requestPermissions;
+- (void)startMonitoringForRegion:(CLRegion *)region;
 
 @end

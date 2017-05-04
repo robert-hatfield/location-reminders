@@ -1,11 +1,6 @@
 
 # Created by https://www.gitignore.io/api/macos,swift,xcode,carthage,objective-c
 
-### Carthage ###
-# Carthage - A simple, decentralized dependency manager for Cocoa
-Carthage/Checkouts/
-Carthage/Build/
-
 ### macOS ###
 *.DS_Store
 .AppleDouble

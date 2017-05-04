@@ -102,12 +102,12 @@
         newReminderViewController.title = annotationView.annotation.title;
         
         // Create a weak reference to self - this VC - to avoid a retain cycle.
-        __weak typeof(self) bruce = self;
+        __weak typeof(self) homeVCweak = self;
         newReminderViewController.completion = ^(MKCircle *circle) {
             // Make the reference to the Home VC strong for the scope of this block.
-            __strong typeof(bruce) hulk = bruce;
-            [hulk.mapView removeAnnotation:annotationView.annotation];
-            [hulk.mapView addOverlay:circle];
+            __strong typeof(homeVCweak) homeVCstrong = homeVCweak;
+            [homeVCstrong.mapView removeAnnotation:annotationView.annotation];
+            [homeVCstrong.mapView addOverlay:circle];
         };
     }
 }

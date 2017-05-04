@@ -70,6 +70,9 @@
                       reminder.location.latitude,
                       reminder.location.longitude,
                       reminder.radius);
+            CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(reminder.location.latitude, reminder.location.longitude);
+            MKCircle *circle = [MKCircle circleWithCenterCoordinate:coordinate radius:reminder.radius.doubleValue];
+            [self.mapView addOverlay:circle];
             }
         } else {
             NSLog(@"An error occurred fetching reminders: %@", error.localizedDescription);

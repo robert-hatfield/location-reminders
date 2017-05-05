@@ -118,9 +118,13 @@ PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
     if ([segue.identifier isEqualToString:@"showPresets"]) {
         
         LocationPresetsViewController *bookmarkViewController = (LocationPresetsViewController *)segue.destinationViewController;
+
         __weak typeof (self) homeVCweak = self;
-        //MARK: Incomplete
-        //        bookmarkViewController.completion =
+        bookmarkViewController.completion = ^(CLLocationCoordinate2D coordinate){
+            __strong typeof (homeVCweak) homeVCStrong = homeVCweak;
+            [homeVCStrong.mapView setRegion:MKCoordinateRegionMakeWithDistance(coordinate, 500.0, 500.0)
+                                   animated:YES];
+        };
     }
 }
 
@@ -221,14 +225,13 @@ calloutAccessoryControlTapped:(UIControl *)control {
 }
 
 //MARK: PFUser delegate methods
-
 - (void)logInViewController:(PFLogInViewController *)logInController
-              didLogInUser:(PFUser *)user {
+               didLogInUser:(PFUser *)user {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)signUpViewController:(PFSignUpViewController *)signUpController
-              didSignUpUser:(PFUser *)user {
+               didSignUpUser:(PFUser *)user {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

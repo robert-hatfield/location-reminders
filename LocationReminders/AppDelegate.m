@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-
+#import <UserNotifications/UserNotifications.h>
 @import Parse;
 
 @interface AppDelegate ()
@@ -19,6 +19,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [self registerForNotifications];
     
     ParseClientConfiguration *parseConfig = [ParseClientConfiguration configurationWithBlock:^(id<ParseMutableClientConfiguration>  _Nonnull configuration) {
         configuration.applicationId = @"location-reminders-server";
@@ -29,6 +30,19 @@
     [Parse initializeWithConfiguration:(parseConfig)];
     
     return YES;
+}
+
+- (void)registerForNotifications {
+    UNAuthorizationOptions options = UNAuthorizationOptionAlert | UNAuthorizationOptionBadge | UNAuthorizationOptionSound;
+    UNUserNotificationCenter *current = [UNUserNotificationCenter currentNotificationCenter];
+    [current requestAuthorizationWithOptions:options completionHandler:^(BOOL granted, NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"An error occurred requesting auth for notifications: %@", error.localizedDescription);
+        }
+        if (granted) {
+            NSLog(@"The user has allowed notifications.");
+        }
+    }];
 }
 
 

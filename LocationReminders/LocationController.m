@@ -7,6 +7,7 @@
 //
 
 #import "LocationController.h"
+@import UserNotifications;
 
 @interface LocationController () <CLLocationManagerDelegate>
 
@@ -37,6 +38,11 @@
 
 
 //MARK: Delegate methods
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    NSLog(@"Location manager failed with error: %@ \n %@", error.localizedDescription, error.localizedFailureReason); //ignore if in simulator
+}
+
 - (void)locationManager:(CLLocationManager *)manager
      didUpdateLocations:(NSArray<CLLocation *> *)locations {
     
@@ -44,10 +50,47 @@
     [self.delegate locationControllerUpdatedLocation:self.location];
 }
 
-- (void)locationManager:(CLLocationManager *)manager
-       didFailWithError:(NSError *)error {
-    NSLog(@"An error occurred getting location: %@",
-          error.localizedDescription);
+- (void)startMonitoringForRegion:(CLRegion *)region {
+    [self.locationManager startMonitoringForRegion:region];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region {
+    NSLog(@"User ENTERED region: %@", region.identifier);
+    // Normally you could send the region object to the app's NotificationCenter, but this isn't
+    // working due to a bug in iOS. We'll use a time interval trigger as a workaround.
+    
+    UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
+    content.title = @"Reminder!";
+    content.body = [NSString stringWithFormat:@"%@", region.identifier];
+    content.sound = [UNNotificationSound defaultSound];
+    
+    UNTimeIntervalNotificationTrigger *trigger =
+        [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:0.1 repeats:NO];
+    
+    UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"Location Entered"
+                                                                          content:content
+                                                                          trigger:trigger];
+    
+    UNUserNotificationCenter *current = [UNUserNotificationCenter currentNotificationCenter];
+    
+    [current removeAllPendingNotificationRequests];
+    [current addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"Error adding notification request: %@", error.localizedDescription);
+        }
+    }];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region {
+    NSLog(@"User EXITED region: %@", region.identifier);
+}
+
+- (void)locationManager:(CLLocationManager *)manager didVisit:(CLVisit *)visit {
+    NSLog(@"Location manager registered a visit: %@", visit);
+}
+
+- (void)locationManager:(CLLocationManager *)manager didStartMonitoringForRegion:(CLRegion *)region {
+    NSLog(@"Region successfully started monitoring changes for region: %@", region.identifier);
 }
 
 @end

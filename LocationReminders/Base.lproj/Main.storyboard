@@ -76,18 +76,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="a4G-nf-6xk">
-                                <rect key="frame" x="0.0" y="333.5" width="375" height="333.5"/>
+                                <rect key="frame" x="8" y="333.5" width="359" height="333.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="xYy-Jq-sC6" style="IBUITableViewCellStyleDefault" id="tTo-wk-amE">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="359" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tTo-wk-amE" id="eCD-5z-KJz">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="359" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xYy-Jq-sC6">
-                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                                    <rect key="frame" x="15" y="0.0" width="329" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -99,9 +99,8 @@
                                 </prototypes>
                                 <sections/>
                             </tableView>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nx5-4D-Oca">
-                                <rect key="frame" x="0.0" y="289" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nx5-4D-Oca">
+                                <rect key="frame" x="8" y="289" width="359" height="44"/>
                                 <items>
                                     <navigationItem title="Favorites" id="I9B-9h-hh0">
                                         <barButtonItem key="rightBarButtonItem" systemItem="stop" id="j8R-i4-Dq9">
@@ -115,8 +114,12 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="a4G-nf-6xk" firstAttribute="top" secondItem="Nx5-4D-Oca" secondAttribute="bottom" constant="0.5" id="1PF-7W-7ZW"/>
+                            <constraint firstAttribute="trailing" secondItem="a4G-nf-6xk" secondAttribute="trailing" constant="8" id="MeE-c0-3d6"/>
+                            <constraint firstItem="Nx5-4D-Oca" firstAttribute="leading" secondItem="NOe-Yo-hbI" secondAttribute="leading" constant="8" id="Pv9-O5-dkv"/>
+                            <constraint firstAttribute="trailing" secondItem="Nx5-4D-Oca" secondAttribute="trailing" constant="8" id="UUD-Ya-sjP"/>
                             <constraint firstItem="a4G-nf-6xk" firstAttribute="centerX" secondItem="NOe-Yo-hbI" secondAttribute="centerX" id="c0S-yZ-Feh"/>
-                            <constraint firstItem="a4G-nf-6xk" firstAttribute="width" secondItem="NOe-Yo-hbI" secondAttribute="width" id="gr2-qN-hZo"/>
+                            <constraint firstItem="a4G-nf-6xk" firstAttribute="leading" secondItem="NOe-Yo-hbI" secondAttribute="leading" constant="8" id="jld-kg-I5x"/>
                             <constraint firstItem="4hQ-do-VOf" firstAttribute="top" secondItem="a4G-nf-6xk" secondAttribute="bottom" id="rcb-1o-BQu"/>
                             <constraint firstItem="a4G-nf-6xk" firstAttribute="height" secondItem="NOe-Yo-hbI" secondAttribute="height" multiplier="0.5" id="xOJ-cK-UCC"/>
                         </constraints>

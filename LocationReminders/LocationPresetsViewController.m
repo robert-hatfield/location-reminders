@@ -10,8 +10,9 @@
 
 
 @interface LocationPresetsViewController () <UITableViewDataSource, UITableViewDelegate>
-@property (weak, nonatomic) IBOutlet UITableView *presetsTableView;
 @property (strong, nonatomic) NSMutableArray *bookmarks;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UINavigationBar *navBar;
 
 @end
 
@@ -20,8 +21,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.presetsTableView.dataSource = self;
-    self.presetsTableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    self.navBar.backgroundColor = self.backgroundColor;
     
     // Create initial bookmarks & array
     LocationBookmark *bookmark1 = [[LocationBookmark alloc] initWithName:@"Point Defiance"

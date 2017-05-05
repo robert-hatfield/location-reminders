@@ -122,7 +122,8 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="presetsTableView" destination="a4G-nf-6xk" id="871-Nz-Ydp"/>
+                        <outlet property="navBar" destination="Nx5-4D-Oca" id="Klc-B9-5gL"/>
+                        <outlet property="tableView" destination="a4G-nf-6xk" id="dsR-pR-JGA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SUz-32-yfC" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -121,7 +121,7 @@ PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
     if ([segue.identifier isEqualToString:@"showPresets"]) {
         
         LocationPresetsViewController *bookmarkViewController = (LocationPresetsViewController *)segue.destinationViewController;
-        // bookmarkViewController.view.backgroundColor = [UIColor self.backgroundColor.alpha;
+        bookmarkViewController.backgroundColor = self.backgroundColor;
 
         __weak typeof (self) homeVCweak = self;
         bookmarkViewController.completion = ^(CLLocationCoordinate2D coordinate){

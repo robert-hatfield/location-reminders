@@ -13,5 +13,6 @@ typedef void(^BookmarkSelectedCompletion)(CLLocationCoordinate2D);
 
 @interface LocationPresetsViewController : UIViewController
 @property (strong, nonatomic) BookmarkSelectedCompletion completion;
+@property (strong, nonatomic) UIColor *backgroundColor;
 
 @end

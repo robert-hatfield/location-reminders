@@ -20,6 +20,7 @@
 PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
+@property (strong, atomic) UIColor *backgroundColor;
 
 @end
 
@@ -29,6 +30,12 @@ PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
     [super viewDidLoad];
     
     // Do any additional setup after loading the view, typically from a nib.
+    self.backgroundColor = [UIColor colorWithRed:0.53
+                                               green:0.60
+                                                blue:0.70
+                                               alpha:1.0];
+    self.view.backgroundColor = self.backgroundColor;
+    
     [LocationController shared].delegate = self;
     [[LocationController shared] requestPermissions];
     self.mapView.showsUserLocation = YES;
@@ -43,12 +50,7 @@ PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
         logInViewController.signUpController.delegate = self;
         logInViewController.fields = PFLogInFieldsLogInButton | PFLogInFieldsSignUpButton | PFLogInFieldsUsernameAndPassword | PFLogInFieldsPasswordForgotten | PFLogInFieldsFacebook | PFLogInFieldsDismissButton;
         //        logInViewController.logInView.logo = [[UIView alloc] init]; // Override logo on login screen
-        logInViewController.logInView.backgroundColor = [UIColor colorWithRed:0.53
-                                                                        green:0.60
-                                                                         blue:0.70
-                                                                        alpha:1.0];
-        
-        ;
+        logInViewController.logInView.backgroundColor = self.backgroundColor;
         
         [self presentViewController:logInViewController animated:YES completion:nil];
     }
@@ -104,6 +106,7 @@ PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
         newReminderViewController.coordinate = annotationView.annotation.coordinate;
         newReminderViewController.annotationTitle = annotationView.annotation.title;
         newReminderViewController.title = annotationView.annotation.title;
+        newReminderViewController.view.backgroundColor = self.backgroundColor;
         
         // Create a weak reference to self - this VC - to avoid a retain cycle.
         __weak typeof(self) homeVCweak = self;
@@ -118,6 +121,7 @@ PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
     if ([segue.identifier isEqualToString:@"showPresets"]) {
         
         LocationPresetsViewController *bookmarkViewController = (LocationPresetsViewController *)segue.destinationViewController;
+        // bookmarkViewController.view.backgroundColor = [UIColor self.backgroundColor.alpha;
 
         __weak typeof (self) homeVCweak = self;
         bookmarkViewController.completion = ^(CLLocationCoordinate2D coordinate){
@@ -128,30 +132,7 @@ PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
     }
 }
 
-
 //MARK: User actions
-- (IBAction)location1Pressed:(id)sender {
-    // Point Defiance
-    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(47.301781, -122.515622);
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinate, 500.0, 500.0);
-    [self.mapView setRegion:region animated:YES];
-}
-
-- (IBAction)location2Pressed:(id)sender {
-    // Code Fellows campus
-    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(47.6182206, -122.3540207);
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinate, 500.0, 500.0);
-    [self.mapView setRegion:region animated:YES];
-}
-
-- (IBAction)location3Pressed:(id)sender {
-    // Fred Meyer on S 19th St, Tacoma
-    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake
-    (47.243322, -122.4978105);
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinate, 500.0, 500.0);
-    [self.mapView setRegion:region animated:YES];
-}
-
 - (IBAction)userLongPressed:(UILongPressGestureRecognizer *)sender {
     if (sender.state == UIGestureRecognizerStateBegan) {
         CGPoint touchPoint = [sender locationInView:self.mapView];
@@ -159,7 +140,7 @@ PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
                                                   toCoordinateFromView:self.mapView];
         MKPointAnnotation *newPoint = [[MKPointAnnotation alloc] init];
         newPoint.coordinate = coordinate;
-        newPoint.title = @"New location";
+        newPoint.title = @"Create new reminder";
         [self.mapView addAnnotation:newPoint];
     }
 }
@@ -201,7 +182,7 @@ PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
     UIColor *randomColor = colors[arc4random_uniform(8)];
     annotationView.pinTintColor = randomColor;
     
-    UIButton *rightCalloutAccessory = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+    UIButton *rightCalloutAccessory = [UIButton buttonWithType:UIButtonTypeContactAdd];
     annotationView.rightCalloutAccessoryView = rightCalloutAccessory;
     
     return annotationView;

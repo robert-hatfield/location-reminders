@@ -24,47 +24,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="eyd-CJ-5EF">
-                                <rect key="frame" x="56.5" y="100" width="262.5" height="467"/>
+                                <rect key="frame" x="8" y="72" width="359" height="587"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="Osm-7Q-X1D" appends="YES" id="ddm-Ca-BIq"/>
                                 </connections>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ab-Ak-kfO">
-                                <rect key="frame" x="20" y="575" width="84" height="30"/>
-                                <state key="normal" title="Pt. Defiance"/>
-                                <connections>
-                                    <action selector="location1Pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cWj-Qs-Hso"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rQc-Rh-Gji">
-                                <rect key="frame" x="141" y="575" width="92" height="30"/>
-                                <state key="normal" title="Code Fellows"/>
-                                <connections>
-                                    <action selector="location2Pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vU9-lC-gPk"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="enw-yi-cmg">
-                                <rect key="frame" x="272.5" y="575" width="78" height="30"/>
-                                <state key="normal" title="Fred Meyer"/>
-                                <connections>
-                                    <action selector="location3Pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="emw-jp-BaH"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="eyd-CJ-5EF" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="8" id="0cb-QQ-nsG"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="eyd-CJ-5EF" secondAttribute="bottom" constant="8" id="5lb-NA-H05"/>
                             <constraint firstItem="eyd-CJ-5EF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="7qU-po-4T2"/>
-                            <constraint firstItem="rQc-Rh-Gji" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Ebt-1Y-PrA"/>
-                            <constraint firstItem="enw-yi-cmg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" multiplier="1.66" id="JQX-zE-3Wb"/>
-                            <constraint firstItem="eyd-CJ-5EF" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="RdU-0U-ljt"/>
-                            <constraint firstItem="eyd-CJ-5EF" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.7" id="Y0m-nb-1f6"/>
-                            <constraint firstItem="eyd-CJ-5EF" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.7" id="aSd-eE-iGX"/>
-                            <constraint firstItem="rQc-Rh-Gji" firstAttribute="top" secondItem="eyd-CJ-5EF" secondAttribute="bottom" constant="8" id="dhi-ef-d32"/>
-                            <constraint firstItem="1ab-Ak-kfO" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" multiplier="0.33" id="dnz-PQ-8Cl"/>
-                            <constraint firstItem="1ab-Ak-kfO" firstAttribute="top" secondItem="eyd-CJ-5EF" secondAttribute="bottom" constant="8" id="owt-ef-SPC"/>
-                            <constraint firstItem="enw-yi-cmg" firstAttribute="top" secondItem="eyd-CJ-5EF" secondAttribute="bottom" constant="8" id="rL1-LY-cqR"/>
+                            <constraint firstItem="eyd-CJ-5EF" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="A4n-ld-Xbq"/>
+                            <constraint firstItem="eyd-CJ-5EF" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="32" id="RdU-0U-ljt"/>
+                            <constraint firstAttribute="trailing" secondItem="eyd-CJ-5EF" secondAttribute="trailing" constant="8" id="aSk-o9-44s"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="UQS-7f-f2U">

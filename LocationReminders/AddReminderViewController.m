@@ -25,7 +25,11 @@
 
 - (IBAction)saveReminder:(UIButton *)sender {
     Reminder *newReminder = [Reminder object];
-    newReminder.name = self.reminderText.text;
+    NSString *name = self.reminderText.text;
+    if ([name isEqual: @""]) {
+        name = @"Reminder";
+    }
+    newReminder.name = name;
     newReminder.location = [PFGeoPoint geoPointWithLatitude:self.coordinate.latitude
                                                   longitude:self.coordinate.longitude];
     NSNumber *radius = [NSNumber numberWithFloat:self.reminderRadius.text.floatValue];

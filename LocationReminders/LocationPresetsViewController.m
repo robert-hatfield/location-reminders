@@ -51,7 +51,7 @@
     return self.bookmarks.count;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     NSLog(@"Selected row %li", (long)indexPath.row);
     LocationBookmark *bookmark = (LocationBookmark *)[self.bookmarks objectAtIndex:indexPath.row];

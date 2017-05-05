@@ -17,7 +17,7 @@
 @import ParseUI;
 
 @interface HomeViewController () <MKMapViewDelegate,LocationControllerDelegate,
-    PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
+PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
@@ -27,7 +27,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     // Do any additional setup after loading the view, typically from a nib.
     [LocationController shared].delegate = self;
     [[LocationController shared] requestPermissions];
@@ -42,54 +42,55 @@
         logInViewController.delegate = self;
         logInViewController.signUpController.delegate = self;
         logInViewController.fields = PFLogInFieldsLogInButton | PFLogInFieldsSignUpButton | PFLogInFieldsUsernameAndPassword | PFLogInFieldsPasswordForgotten | PFLogInFieldsFacebook | PFLogInFieldsDismissButton;
-//        logInViewController.logInView.logo = [[UIView alloc] init]; // Override logo on login screen
+        //        logInViewController.logInView.logo = [[UIView alloc] init]; // Override logo on login screen
         logInViewController.logInView.backgroundColor = [UIColor colorWithRed:0.53
                                                                         green:0.60
                                                                          blue:0.70
                                                                         alpha:1.0];
         
-;
-        
+        ;
         
         [self presentViewController:logInViewController animated:YES completion:nil];
     }
-}
-
--(void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
     
-    PFQuery *query = [PFQuery queryWithClassName:@"Reminder"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects,
-                                              NSError * _Nullable error) {
-        
-        if (!error) {
-            NSLog(@"\nLOCATIONS:\n---------");
-            for (Reminder *reminder in objects) {
-                NSLog(@"Name: %@, Lat: %f Lon: %f | Radius: %@m.",
-                      reminder.name,
-                      reminder.location.latitude,
-                      reminder.location.longitude,
-                      reminder.radius);
-            CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(reminder.location.latitude, reminder.location.longitude);
-            MKCircle *circle = [MKCircle circleWithCenterCoordinate:coordinate radius:reminder.radius.doubleValue];
-            [self.mapView addOverlay:circle];
-            }
-        } else {
-            NSLog(@"An error occurred fetching reminders: %@", error.localizedDescription);
-        }
-        
-    }];
+    [self fetchReminders];
 }
 
 - (void)reminderSavedToParse:(id)sender {
     NSLog(@"Do something once reminder is saved.");
 }
 
--(void)dealloc {
+- (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:@"ReminderSavedToParse"
                                                   object:nil];
     // No need to call dealloc on parent class; ARC does this for us.
+}
+
+- (void)fetchReminders {
+    PFQuery *query = [PFQuery queryWithClassName:@"Reminder"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects,
+                                              NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"An error occurred fetching reminders: %@", error.localizedDescription);
+            return ;
+        }
+        
+        NSLog(@"\nLOCATIONS:\n---------");
+        for (Reminder *reminder in objects) {
+            NSLog(@"Name: %@, Lat: %f Lon: %f | Radius: %@m.",
+                  reminder.name,
+                  reminder.location.latitude,
+                  reminder.location.longitude,
+                  reminder.radius);
+            CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(reminder.location.latitude,
+                                                                           reminder.location.longitude);
+            MKCircle *circle = [MKCircle circleWithCenterCoordinate:coordinate
+                                                             radius:reminder.radius.doubleValue];
+            [self.mapView addOverlay:circle];
+        }
+        
+    }];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -118,8 +119,8 @@
         
         LocationPresetsViewController *bookmarkViewController = (LocationPresetsViewController *)segue.destinationViewController;
         __weak typeof (self) homeVCweak = self;
-//MARK: Incomplete
-//        bookmarkViewController.completion =
+        //MARK: Incomplete
+        //        bookmarkViewController.completion =
     }
 }
 
@@ -221,12 +222,12 @@ calloutAccessoryControlTapped:(UIControl *)control {
 
 //MARK: PFUser delegate methods
 
--(void)logInViewController:(PFLogInViewController *)logInController
+- (void)logInViewController:(PFLogInViewController *)logInController
               didLogInUser:(PFUser *)user {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
--(void)signUpViewController:(PFSignUpViewController *)signUpController
+- (void)signUpViewController:(PFSignUpViewController *)signUpController
               didSignUpUser:(PFUser *)user {
     [self dismissViewControllerAnimated:YES completion:nil];
 }

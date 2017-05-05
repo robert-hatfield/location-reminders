@@ -39,7 +39,7 @@
 
 //MARK: Delegate methods
 
--(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
     NSLog(@"Location manager failed with error: %@ \n %@", error.localizedDescription, error.localizedFailureReason); //ignore if in simulator
 }
 
@@ -54,7 +54,7 @@
     [self.locationManager startMonitoringForRegion:region];
 }
 
--(void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region {
+- (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region {
     NSLog(@"User ENTERED region: %@", region.identifier);
     // Normally you could send the region object to the app's NotificationCenter, but this isn't
     // working due to a bug in iOS. We'll use a time interval trigger as a workaround.
@@ -81,15 +81,15 @@
     }];
 }
 
--(void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region {
+- (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region {
     NSLog(@"User EXITED region: %@", region.identifier);
 }
 
--(void)locationManager:(CLLocationManager *)manager didVisit:(CLVisit *)visit {
+- (void)locationManager:(CLLocationManager *)manager didVisit:(CLVisit *)visit {
     NSLog(@"Location manager registered a visit: %@", visit);
 }
 
--(void)locationManager:(CLLocationManager *)manager didStartMonitoringForRegion:(CLRegion *)region {
+- (void)locationManager:(CLLocationManager *)manager didStartMonitoringForRegion:(CLRegion *)region {
     NSLog(@"Region successfully started monitoring changes for region: %@", region.identifier);
 }
 

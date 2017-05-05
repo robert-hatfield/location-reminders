@@ -10,7 +10,7 @@
 
 @implementation LocationBookmark
 
--(id)initWithName:(NSString *)name
+- (id)initWithName:(NSString *)name
                    latitude:(double)latitude
                andLongitude:(double)longitude {
 
@@ -24,7 +24,7 @@
     return self;
 }
 
--(id)initWithName:(NSString *)name andLocation:(CLLocation*)location {
+- (id)initWithName:(NSString *)name andLocation:(CLLocation*)location {
     self = [super init];
     
     if (self) {
